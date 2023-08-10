@@ -1,12 +1,12 @@
-const socketIO=require("socket.io");
+const {Server}=require("socket.io");
 const app=require("./app");
 const http=require("http");
+const httpServer=http.createServer(app);
 
-const server=http.createServer(app);
-const io=socketIO(server);
+const io=new Server(httpServer);
 
-const activeUsers=[];
-const pendingMessages=[];
+let activeUsers=[];
+let pendingMessages=[];
 
 io.on("connection",(socket)=>{
       //new active user register with their name
@@ -38,6 +38,7 @@ io.on("connection",(socket)=>{
               io.to(data.receiver.id).emit("message",messageData);
           }else{
               pendingMessages.push(messageData);
+              console.log(pendingMessages);
           }
       });
       socket.on("disconnect",()=>{
@@ -45,4 +46,4 @@ io.on("connection",(socket)=>{
       })
 });
 
-module.exports=io;
+module.exports={app,httpServer};
