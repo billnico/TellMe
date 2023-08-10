@@ -40,6 +40,9 @@ io.on("connection",(socket)=>{
               pendingMessages.push(messageData);
           }
       });
+      socket.on("disconnect",()=>{
+          activeUsers=activeUsers.filter((user)=>user.id!==socket.id);
+      })
 });
 
 module.exports=io;
