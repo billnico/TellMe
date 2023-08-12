@@ -6,54 +6,10 @@
   </head>
   <body>
     <div class="link-wrap">
-         <button id="clicka">click</button>
-         <form id="name-add">
-              <input placeholder="your-name" id="input">
-              <button type="submit">submit</button>
-         </form>
-         <form id="receiver">
-                <input placeholder="name" id="target">
-                <input placeholder="message" id="mess">
-                <button type="submit">Send</button>
-         </form>
-         <p id="paragraph">
-
-         </p>
+        
     </div>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script>
-       
-        let nameForm=document.getElementById("name-add");
-        nameForm.addEventListener("submit",(e)=>{
-          e.preventDefault();
-          let input=document.getElementById("input");
-          let name=input.value;
-          window.localStorage.setItem("name",name);
-          socket.emit("active",window.localStorage.getItem("name"));
-          socket.emit("check",{name:window.localStorage.getItem("name")});
-        })
-        
-        const socket= io();
-        
-        //socket.emit("check",{name:window.localStorage.getItem("name")});
-
-        socket.on("connect",(data)=>{
-           console.log("connected");
-        });
-
-        socket.on("message",(data)=>{
-            let para=document.getElementById("paragraph");
-            const message=data.message;
-            para.innerText=`${data.sender}: ${message}`;
-        })
-
-        let sendMessForm=document.getElementById("receiver");
-        sendMessForm.addEventListener("submit",(e)=>{
-            e.preventDefault();
-            let message=document.getElementById("mess").value;
-            let receiver=document.getElementById("target").value;
-            socket.emit("message",{name:window.localStorage.getItem("name"),message:message,targ:receiver});
-        })
     </script>
   </body>
 </html>

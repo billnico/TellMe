@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get("/:id",(req,res)=>{
-    res.render("inbox",{target:req.params.id});
+    res.render("send",{target:req.params.id});
 });
 
 module.exports = router;

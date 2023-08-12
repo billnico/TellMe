@@ -31,10 +31,8 @@ io.on("connection",(socket)=>{
       });
       //data must include reciever-username, message and sender-name
       socket.on("message",(data)=>{
-              const sender=activeUsers.find((user)=>user.socket===socket);
               const owner=activeUsers.find((user)=>user.name===data.targ);
               const messageData={
-                        sender:sender.name,
                         message:data.message,
                         receiver:data.targ
                      }
