@@ -5,4 +5,9 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+
+router.get("/:id",(req,res)=>{
+    res.render("inbox",{target:req.params.id});
+});
+
 module.exports = router;
