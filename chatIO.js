@@ -13,33 +13,41 @@ io.on("connection",(socket)=>{
       //active fires first before check from client
       socket.on("active",(name)=>{
           const user={
-            id:socket.id,
+            socket:socket,
             name:name
           };
           activeUsers.push(user);
       });
       //when client connects they check for new message
       socket.on("check",(data)=>{
-         if(pendingMessages.includes(data.name)){
-            const self=activeUsers.find((user)=>{user.name===data.name});
-            io.to(self.id).emit("message",messageData);
+         const user={
+            name:data.name,
+            socket:socket
+         }
+         const message=pendingMessages.find((message)=>message.target===user.name);
+         if(message){
+            user.socket.emit("message",message.messageData);
          }
       });
       //data must include reciever-username, message and sender-name
       socket.on("message",(data)=>{
-              const sender=activeUsers.find((user)=>user.id===socket.id);
-              const owner=activeUsers.find((user)=>user.name===data.receiver);
+              const sender=activeUsers.find((user)=>user.socket===socket);
+              const owner=activeUsers.find((user)=>user.name===data.targ);
               const messageData={
-                 sender:sender,
-                 message:data.message,
-                 receiver:owner
+                        sender:sender.name,
+                        message:data.message,
+                        receiver:data.targ
+                     }
+              if(owner){   
+                    owner.socket.emit("message",messageData);
+              }else{
+                const message={
+                    messageData,
+                    target:data.targ
+                }
+                pendingMessages.push(message);
               }
-              if(activeUsers.includes(data.receiver)){
-              io.to(data.receiver.id).emit("message",messageData);
-          }else{
-              pendingMessages.push(messageData);
-              console.log(pendingMessages);
-          }
+              
       });
       socket.on("disconnect",()=>{
           activeUsers=activeUsers.filter((user)=>user.id!==socket.id);
