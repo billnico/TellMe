@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get("/:id",(req,res)=>{
-    res.render("send",{target:req.params.id});
+router.get("/:username",(req,res)=>{
+    res.render("send",{target:req.params.username});
 });
 
 module.exports = router;
