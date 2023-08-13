@@ -6,14 +6,15 @@
   </head>
   <body>
     <div class="send-wrap">
-          <div>
-              <h1 id="logo"></h1>
-              <form id="send-form">
-                 <input type="hidden" value="<%= target %>" id="username" />
-                 <textarea id="text" ></textarea>
-                 <button id="send-button" type="submit">send</button>
-              </form>
+          <div class="form-wrap">
+              <h1 id="logo">TM</h1>
+                  <form id="send-form">
+                    <input type="hidden" value="<%= target %>" id="username" />
+                    <textarea id="text" placeholder="your text"></textarea>
+                    <button id="send-button" type="submit">send</button>
+                  </form>
           </div>
+          <a href="/">get your own messages</a>
     </div>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script>
@@ -23,7 +24,7 @@
         let textInput=document.getElementById("text");
         let targ=document.getElementById("username");
 
-        sendForm.addEventListener("submit",formSubmit);
+        
 
         const formSubmit=(e)=>{
             e.preventDefault();
@@ -31,6 +32,8 @@
             let target=targ.value;
             socket.emit("message",{message:text,targ:target});
         }
+        sendForm.addEventListener("submit",formSubmit);
+
     </script>
   </body>
 </html>
