@@ -3,13 +3,48 @@
   <head>
     <title></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+        
   </head>
   <body>
-    <div class="link-wrap">
-        
+    <script>
+        window.addEventListener("beforeunload",(e)=>{
+             e.preventDefault();
+             const username=window.localStorage.getItem("username");
+             if(!username){
+                 
+             }
+        })
+    </script>
+    <div class="content">
+        <header>
+          <h1>TM</h1>
+          <button>menu</button>
+        </header>
+        <div>
+          <a id="home-link" href="/">Home</a>
+          <a id="inbox-link">Inbox</a>
+        </div>
+        <div class="url-wrap">
+               <div class="image"></div>
+               <div class="url" id="url"></div>
+        </div>
     </div>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script>
+      const username=window.localStorage.getItem("username");
+
+
+      let inboxLink=document.getElementById("inbox-link");
+      let urlDiv=document.getElementById("url")
+      
+      homeLink.style.color="red";
+
+      let inboxUrl=`/inbox/${username}`;
+      inboxLink.style.href=inboxUrl;
+
+      let url=`http://localhost:3000/send/:${username}`;
+      urlDiv.innerText=url;
+
     </script>
   </body>
 </html>

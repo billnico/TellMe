@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+        
+  </head>
+  <body>
+    <div class="content">
+        <div class="wrap">
+             <h1>TM</h1>
+             <form class="usernameForm" id="username">
+                  <label for="name">Username</label>
+                  <input placeholder="username" id="name">
+                  <button class="submit">Done</button>
+             </form>
+        </div>
+    </div>
+    <script>
+        let userForm=document.getElementById("username");
+
+        function formSubmit(e){
+            e.preventDefault();
+            let username=document.getElementById("name").value;
+            window.localStorage.setItem("username",username);
+            fetch("/").catch((err)=>console.log("error"));
+        }
+
+        userForm.addEventListener("submit",formSubmit);
+    </script>
+  </body>
+</html>

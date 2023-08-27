@@ -10,7 +10,7 @@
               <h1 id="logo">TM</h1>
                   <form id="send-form">
                     <input type="hidden" value="<%= target %>" id="username" />
-                    <textarea id="text" placeholder="your text"></textarea>
+                    <textarea id="text" placeholder="message"></textarea>
                     <button id="send-button" type="submit">send</button>
                   </form>
           </div>
@@ -30,6 +30,7 @@
             e.preventDefault();
             let text=textInput.value;
             let target=targ.value;
+            textInput.value="";
             socket.emit("message",{message:text,targ:target});
         }
         sendForm.addEventListener("submit",formSubmit);

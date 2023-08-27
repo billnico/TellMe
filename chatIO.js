@@ -7,6 +7,7 @@ const io=new Server(httpServer);
 
 let activeUsers=[];
 let pendingMessages=[];
+let messageDB=[];
 
 io.on("connection",(socket)=>{
       //new active user register with their name
@@ -17,6 +18,13 @@ io.on("connection",(socket)=>{
             name:name
           };
           activeUsers.push(user);
+      });
+      socket.on("getMessages",(username)=>{
+           let messages=messageDB.filter((message)=>{
+              message.target===username;
+           });
+           socket.emit("allMessages",messages);
+
       });
       //when client connects they check for new message
       socket.on("check",(data)=>{
