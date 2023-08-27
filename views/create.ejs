@@ -23,7 +23,7 @@
             e.preventDefault();
             let username=document.getElementById("name").value;
             window.localStorage.setItem("username",username);
-            fetch("/").catch((err)=>console.log("error"));
+            window.location.href="/";
         }
 
         userForm.addEventListener("submit",formSubmit);

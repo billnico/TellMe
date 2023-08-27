@@ -12,30 +12,24 @@ let messageDB=[];
 io.on("connection",(socket)=>{
       //new active user register with their name
       //active fires first before check from client
-      socket.on("active",(name)=>{
+      socket.on("active",(data)=>{
           const user={
             socket:socket,
-            name:name
+            name:data.name
           };
           activeUsers.push(user);
       });
-      socket.on("getMessages",(username)=>{
-           let messages=messageDB.filter((message)=>{
-              message.target===username;
-           });
-           socket.emit("allMessages",messages);
-
-      });
       //when client connects they check for new message
-      socket.on("check",(data)=>{
+      socket.on("getMessages",(data)=>{
          const user={
             name:data.name,
             socket:socket
          }
-         const message=pendingMessages.find((message)=>message.target===user.name);
-         if(message){
-            user.socket.emit("message",message.messageData);
-         }
+         const requiredMessages=pendingMessages.filter((message)=>message.target===user.name);
+         const messages=requiredMessages.map((message)=>message.messageData);
+         user.socket.emit("allMessages",{messages});
+         console.log(messages);
+         
       });
       //data must include reciever-username, message and sender-name
       socket.on("message",(data)=>{
@@ -45,13 +39,13 @@ io.on("connection",(socket)=>{
                         receiver:data.targ
                      }
               if(owner){   
-                    owner.socket.emit("message",messageData);
+                    owner.socket.emit("message",{messageData});
               }else{
                 const message={
                     messageData,
                     target:data.targ
                 }
-                pendingMessages.push(message);
+                pendingMessages.unshift(message);
               }
               
       });

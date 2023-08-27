@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </script>  
+  </head>
+  <body>
+        
+            <div class="content">
+                <div class="head">
+                    <a onclick="window.location.href=`/`">home</a>
+                    <a style="color: blue;">inbox</a>
+                </div>
+                
+                <div class="messages-wrap" id="wrap">
+                      <div class="message">
+
+                      </div>
+                </div>
+            </div>
+
+            <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+            <script>
+                const socket=io();
+                const username=window.localStorage.getItem("username");
+                const messageWrap=document.getElementById("wrap");
+
+                let allMessages=[];
+                
+                socket.emit("active",{username});
+                socket.emit("getMessages",{name:username});
+
+                socket.on("allMessages",(messages)=>{
+                      allMessages=messages.messages;
+                      console.log(allMessages);
+                      allMessages.map((message)=>{
+                          let messageDiv=document.createElement("div");
+                          messageDiv.classList.add("message");
+                          messageDiv.innerText=message.message;
+                          messageWrap.appendChild(messageDiv);
+                      });
+                });
+                socket.on("message",(data)=>{
+                     allMessages.unshift(data.messageData);
+                     messageWrap.innerHTML="";
+                     allMessages.map((message)=>{
+                          let messageDiv=document.createElement("div");
+                          messageDiv.classList.add("message");
+                          messageDiv.innerText=message.message;
+                          messageWrap.appendChild(messageDiv);
+                      });
+
+                });
+            </script>
+  </body>
+</html>
