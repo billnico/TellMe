@@ -7,14 +7,16 @@
   <body>
     <div class="send-wrap">
           <div class="form-wrap">
-              <h1 id="logo">TM</h1>
+                  <h1 id="logo">TM</h1>
                   <form id="send-form">
                     <input type="hidden" value="<%= target %>" id="username" />
                     <textarea id="text" placeholder="message"></textarea>
                     <button id="send-button" type="submit">send</button>
                   </form>
+
+                  <a href="/" class="home-link">get your own messages</a>
           </div>
-          <a href="/">get your own messages</a>
+         
     </div>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script>

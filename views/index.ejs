@@ -5,37 +5,40 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script>
            const username=window.localStorage.getItem("username");
-           if(username){
-               console.log("in username");
-           }else{
-             console.log("missing username");
-             window.location.href="/create";
-           }
   </script>  
   </head>
   <body>
   
     <div class="content">
-        <header>
-          <h1>TM</h1>
-          <button>menu</button>
+        <header class="head">
+          <div class="wrap">
+            <h1>TM</h1>
+            <button>menu</button>
+          </div>
         </header>
-        <div>
+        <div class="links">
           <a id="home-link" style="color: blue;">Home</a>
           <a id="inbox-link">Inbox</a>
         </div>
         <div class="url-wrap">
-               <div class="image">
-                  send me anonymous message
+               <div class="image-wrap">
+                  <div class="image-text">
+                    <img id="image" src="<%= user.source %>">
+                    <p class="text">send me anonymous message</p>
+                  </div>
                </div>
-               <div class="url" id="url"></div>
+               <div class="url" id="url-wrap">
+                    <button class="link-copy">copy link</button>
+               </div>
         </div>
     </div>
     <script>
       const name=window.localStorage.getItem("username");
 
+
+
       let inboxLink=document.getElementById("inbox-link");
-      let urlDiv=document.getElementById("url")
+      let urlDiv=document.getElementById("url-wrap");
   
 
       let inboxUrl=`/inbox/${name}`;
@@ -44,7 +47,10 @@
       })
 
       let url=`http://localhost:3000/send/${name}`;
-      urlDiv.innerText=url;
+      let urlP=document.createElement("p");
+      urlP.classList.add("url-text");
+      urlP.innerText=url;
+      urlDiv.prepend(urlP);
     </script>
   </body>
 </html>

@@ -6,3 +6,67 @@ body {
 a {
   color: #00B7FF;
 }
+
+.head{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.wrap{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+}
+.links a{
+  font-size: 20px;
+  margin: 5px 30px;
+}
+
+.url-wrap{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+  align-items: center;
+}
+
+.image-wrap{
+  height: 100px;
+  min-width: 100px;
+  border: 1px solid red;
+  border-radius: 15px;
+  background-color: #d3d3d3;
+  padding: 10px 10px;
+}
+
+.url{
+  margin-top: 20px;
+  height: fit-content;
+  min-width: 100px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d3d3d3;
+  border: 1px solid blue;
+  border-radius: 15px;
+}
+
+.url-text{
+  color: blue;
+}
+
+.link-copy{
+   border-color: blue;
+   background-color: inherit;
+   border-radius: 10px;
+   padding: 3px 5px;
+   font-size: 16px;
+}

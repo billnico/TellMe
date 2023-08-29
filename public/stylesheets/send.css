@@ -9,7 +9,7 @@
     flex-direction: column;
     position: absolute;
     width: 250px;
-    height: 250px;
+    height: 300px;
     border-radius: 20px;
     top: 50%;
     left: 50%;
@@ -46,7 +46,22 @@
 #text{
     height: 50%;
     background-color: inherit;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
     overflow: scroll;
+}
+
+.home-link{
+    background-color: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    line-height: 30px;
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 3px 3px;
+}
+
+.home-link:hover{
+    opacity: 0.6;
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+           const username=window.localStorage.getItem("username");
+           if(username){
+              window.location.href=`/${username}`;
+           }else{
+             console.log("missing username");
+             window.location.href="/user/create";
+           }
+  </script>  
+  </head>
+  <body>
+  </body>
+</html>

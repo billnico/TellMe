@@ -1,12 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.render("index");
-  
+router.get('/:username', function(req, res, next) {
+  //will fetch instagram profile info
+  const user={
+    profile:"source here"
+  }
+  res.render("index",{user:user});
+});
+router.get("/", function(req, res, next) {
+  res.render("home");
 });
 
-router.get("/create",(req,res)=>{
+router.get("/user/create",(req,res)=>{
     res.render("create");
 });
 
