@@ -1,0 +1,22 @@
+#mess-modal{
+    display: none;
+    flex-direction: column;
+    height: fit-content;
+    padding: 10px 10px;
+    background-color: #DCDCDC;
+    border-radius: 15px;
+    border: 1px solid #DAA520;
+    min-width: 150px;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.message-wrap{
+    display: grid;
+}
+
+.mess-icon{
+    height: 40px;
+    width: 40px;
+    color: #DAA520;
+}

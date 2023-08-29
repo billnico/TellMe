@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>Tellme</title>
     <link rel='stylesheet' href='/stylesheets/inbox.css' />
-  </script>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
   </head>
   <body>
         
@@ -18,26 +18,58 @@
 
                       </div>
                 </div>
+                <div id="mess-modal">
+                    <p class="close" id="close">X</p>
+                    <div id="text">
+
+                    </div>
+                </div>
             </div>
 
-            <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+            <script src="http://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
             <script>
                 const socket=io();
                 const username=window.localStorage.getItem("username");
                 const messageWrap=document.getElementById("wrap");
+
+                let messModal=document.getElementById("mess-modal");
+                let closeButton=document.getElementById("close");
+                let modalText=document.getElementById("text");
 
                 let allMessages=[];
                 
                 socket.emit("active",{username});
                 socket.emit("getMessages",{name:username});
 
+                function closeModal(){
+                    modalText.innerText="";
+                    messModal.style.display="none";
+                }
+                closeButton.addEventListener("click",(e)=>{
+                    closeModal();
+                })
+
+                function showMessage(message){
+                    messModal.style.display="flex";
+                    modalText.innerText=message;
+                }
+
                 socket.on("allMessages",(messages)=>{
                       allMessages=messages.messages;
-                      console.log(allMessages);
                       allMessages.map((message)=>{
                           let messageDiv=document.createElement("div");
                           messageDiv.classList.add("message");
-                          messageDiv.innerText=message.message;
+
+                          let messIcon=document.createElement("i");
+                          messIcon.classList.add("fa-solid","fa-message","mess-icon");
+                          
+                          console.log(message.message);
+                          messIcon.addEventListener("click",(e)=>{
+                               showMessage(message.message);
+                          });
+
+                          messageDiv.appendChild(messIcon);
+
                           messageWrap.appendChild(messageDiv);
                       });
                 });
@@ -47,11 +79,21 @@
                      allMessages.map((message)=>{
                           let messageDiv=document.createElement("div");
                           messageDiv.classList.add("message");
-                          messageDiv.innerText=message.message;
+                          
+                          let messIcon=document.createElement("i");
+                          messIcon.classList.add("fa","fa-solid","fa-message","mess-icon");
+
+                          messIcon.addEventListener("click",(e)=>{
+                               showMessage(message.message);
+                          });
+
+                          messageDiv.appendChild(messIcon);
                           messageWrap.appendChild(messageDiv);
                       });
 
                 });
+
+                
             </script>
   </body>
 </html>

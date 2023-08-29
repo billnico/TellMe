@@ -1,0 +1,66 @@
+.content{
+    background-color: #778899;
+    width: 97vw;
+    height: 97vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 0px 0px;
+}
+.wrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50)
+}
+
+.wrap .usernameForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.usernameForm input{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 5px 5px;
+    width: inherit;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 5px;
+}
+.usernameForm button{
+    margin: 5px 5px;
+    background-color: #B8860B;
+    color: black;
+    border: none;
+    height: 25px;
+    border-radius: 10px;
+    width: inherit;
+    font-size: 16px;
+    width: 60px;
+    padding: 5px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.usernameForm label{
+    margin: 5px 5px 0px 5px;
+}
+.wrap h1{
+    color: #DAA520;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.usernameForm{
+    max-width: 190px;
+}

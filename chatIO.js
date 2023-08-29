@@ -28,7 +28,6 @@ io.on("connection",(socket)=>{
          const requiredMessages=pendingMessages.filter((message)=>message.target===user.name);
          const messages=requiredMessages.map((message)=>message.messageData);
          user.socket.emit("allMessages",{messages});
-         console.log(messages);
          
       });
       //data must include reciever-username, message and sender-name
