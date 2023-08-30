@@ -36,7 +36,7 @@
             <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
             <script>
                 let webSocketUrl=window.location.host;
-                const socket=io(`wss://${webSocketUrl}`);
+                const socket=io(`ws://${webSocketUrl}`);
                 const username=window.localStorage.getItem("username");
                 const messageWrap=document.getElementById("wrap");
 
@@ -71,7 +71,6 @@
                           let messIcon=document.createElement("i");
                           messIcon.classList.add("fas","fa-solid","fa-message","mess-icon");
                           
-                          console.log(message.message);
                           messIcon.addEventListener("click",(e)=>{
                                showMessage(message.message);
                           });
@@ -83,7 +82,6 @@
                 });
                 socket.on("message",(data)=>{
                      allMessages.unshift(data.messageData);
-                     console.log(data.messageData);
                      messageWrap.innerHTML="";
                      allMessages.map((message)=>{
                           let messageDiv=document.createElement("div");

@@ -21,7 +21,7 @@
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script>
         let webSocketUrl=window.location.host;
-        const socket=io(`wss://${webSocketUrl}`);
+        const socket=io(`ws://${webSocketUrl}`);
          
         let sendForm=document.getElementById("send-form");
         let textInput=document.getElementById("text");
@@ -34,6 +34,7 @@
             let text=textInput.value;
             let target=targ.value;
             textInput.value="";
+            console.log(target);
             socket.emit("message",{message:text,targ:target});
         }
         sendForm.addEventListener("submit",formSubmit);

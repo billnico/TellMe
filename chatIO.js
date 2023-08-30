@@ -7,7 +7,7 @@ const io=new Server(httpServer);
 
 let activeUsers=[];
 let pendingMessages=[];
-let messageDB=[];
+//let messageDB=[];
 
 io.on("connection",(socket)=>{
       //new active user register with their name
@@ -15,7 +15,7 @@ io.on("connection",(socket)=>{
       socket.on("active",(data)=>{
           const user={
             socket:socket,
-            name:data.name
+            name:data.username
           };
           activeUsers.push(user);
       });
@@ -33,6 +33,7 @@ io.on("connection",(socket)=>{
       //data must include reciever-username, message and sender-name
       socket.on("message",(data)=>{
               const owner=activeUsers.find((user)=>user.name===data.targ);
+              console.log(activeUsers);
               const messageData={
                         message:data.message,
                         receiver:data.targ
