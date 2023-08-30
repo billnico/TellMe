@@ -3,7 +3,10 @@
   <head>
     <title>Tellme</title>
     <link rel='stylesheet' href='/stylesheets/inbox.css' />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+ integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+ crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   </head>
   <body>
         
@@ -11,12 +14,16 @@
                 <div class="head">
                     <a onclick="window.location.href=`/`">home</a>
                     <a style="color: blue;">inbox</a>
+
                 </div>
                 
+                
                 <div class="messages-wrap" id="wrap">
+                    <!-- 
                       <div class="message">
-
+                           this is just place holder thats why commented
                       </div>
+                    -->
                 </div>
                 <div id="mess-modal">
                     <p class="close" id="close">X</p>
@@ -61,7 +68,7 @@
                           messageDiv.classList.add("message");
 
                           let messIcon=document.createElement("i");
-                          messIcon.classList.add("fa-solid","fa-message","mess-icon");
+                          messIcon.classList.add("fas","fa-solid","fa-message","mess-icon");
                           
                           console.log(message.message);
                           messIcon.addEventListener("click",(e)=>{
@@ -75,13 +82,14 @@
                 });
                 socket.on("message",(data)=>{
                      allMessages.unshift(data.messageData);
+                     console.log(data.messageData);
                      messageWrap.innerHTML="";
                      allMessages.map((message)=>{
                           let messageDiv=document.createElement("div");
                           messageDiv.classList.add("message");
                           
                           let messIcon=document.createElement("i");
-                          messIcon.classList.add("fa","fa-solid","fa-message","mess-icon");
+                          messIcon.classList.add("fas","fa-solid","fa-message","mess-icon");
 
                           messIcon.addEventListener("click",(e)=>{
                                showMessage(message.message);

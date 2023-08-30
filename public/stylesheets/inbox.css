@@ -1,22 +1,78 @@
+.content{
+    background-color: #778899;
+    height: 97vh;
+    width: 97vw;
+    position: relative;
+}
+.head{
+    width: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.head a{
+    margin: 20px 40px 5px 5px;
+    line-height: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
 #mess-modal{
     display: none;
     flex-direction: column;
-    height: fit-content;
-    padding: 10px 10px;
+    height: 200px;
+    width: 200px;
+    padding: 0px 10px;
     background-color: #DCDCDC;
     border-radius: 15px;
     border: 1px solid #DAA520;
-    min-width: 150px;
+    max-width: 300px;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: end;
 }
-
-.message-wrap{
+#mess-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#mess-modal p{
+    font-size: 24px;
+    height: 10%;
+    color: red;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 0px;
+}
+#mess-modal #text{
+    width: 100%;
+    height: 90%;
+    justify-self: flex-start;
+}
+.messages-wrap{
     display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(70px,80px));
+    row-gap: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 350px;
 }
-
+.messages-wrap{
+    background-color: #FFFAF0;
+    width: 300px;
+    border-radius: 15px;
+}
 .mess-icon{
-    height: 40px;
-    width: 40px;
+    font-size: 40px;
     color: #DAA520;
+}
+.message{
+    margin: 10px 10px;
+    width: fit-content;
+    height: fit-content;
+}
+a:hover{
+    cursor: pointer;
+    color: red;
 }

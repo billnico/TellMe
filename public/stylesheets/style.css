@@ -3,10 +3,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-
 .head{
   display: flex;
   align-items: flex-end;
@@ -15,7 +11,7 @@ a {
 .wrap{
   display: flex;
   width: 50%;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -28,6 +24,11 @@ a {
 .links a{
   font-size: 20px;
   margin: 5px 30px;
+}
+
+.links a:hover{
+  color: blue;
+  cursor: pointer;
 }
 
 .url-wrap{

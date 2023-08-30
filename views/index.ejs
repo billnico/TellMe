@@ -13,7 +13,6 @@
         <header class="head">
           <div class="wrap">
             <h1>TM</h1>
-            <button>menu</button>
           </div>
         </header>
         <div class="links">
@@ -45,8 +44,9 @@
       inboxLink.addEventListener(("click"),(e)=>{
           window.location.href=inboxUrl;
       })
-
-      let url=`http://localhost:3000/send/${name}`;
+      
+      let urlPart=window.location.href.substring(0,window.location.href.lastIndexOf("/"));
+      let url=`${urlPart}/send/${name}`;
       let urlP=document.createElement("p");
       urlP.classList.add("url-text");
       urlP.innerText=url;
