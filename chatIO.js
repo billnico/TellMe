@@ -33,7 +33,6 @@ io.on("connection",(socket)=>{
       //data must include reciever-username, message and sender-name
       socket.on("message",(data)=>{
               const owner=activeUsers.find((user)=>user.name===data.targ);
-              console.log(activeUsers);
               const messageData={
                         message:data.message,
                         receiver:data.targ
