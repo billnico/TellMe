@@ -37,6 +37,7 @@ io.on("connection",(socket)=>{
                         message:data.message,
                         receiver:data.targ
                      }
+                     console.log("message to :"+messageData.receiver);
               if(owner){   
                     owner.socket.emit("message",{messageData});
               }else{
